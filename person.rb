@@ -1,3 +1,5 @@
+require 'date'
+
 class Person
 
 	attr_reader :first_name, :last_name, :gender, :date_of_birth, :favorite_color
@@ -6,8 +8,12 @@ class Person
     	@last_name = args.fetch(:last_name)
 		@first_name = args.fetch(:first_name)
     	@gender = standardize_gender(args.fetch(:gender))
-    	@date_of_birth = standardize_date(args.fetch(:date_of_birth))
+    	@date_of_birth = date_to_datetime(args.fetch(:date_of_birth))
     	@favorite_color = args.fetch(:favorite_color)
+  	end
+
+  	def datetime_to_formatted_birthdate(birthdate)
+  		birthdate.strftime("%-m/%-d/%y")
   	end
 
   	private
@@ -16,8 +22,9 @@ class Person
   		gender[0].downcase == "m" ? "Male" : "Female"
   	end
 
-  	def standardize_date(date)
-  		date.gsub(/[-]/, "/")
+  	def date_to_datetime(date)
+  		dates = date.gsub(/[-]/, "/").split("/")
+  		DateTime.parse("#{dates[2]}/#{dates[0]}/#{dates[1]}")
   	end
 
 end
