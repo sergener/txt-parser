@@ -1,10 +1,10 @@
-require 'csv'
+# require 'csv'
 require_relative 'person'
-require 'date'
+# require 'date'
 require 'pry'
 
 class PersonParser
-  attr_reader :file
+  attr_reader :people
 
   def initialize
     @files = []
@@ -24,7 +24,6 @@ class PersonParser
 
 
   def file_names
-  	# @files = Dir.entries("input-files").select {|f| !File.directory? f}
   	@files = Dir.glob("input-files/*")
   end
 
@@ -58,8 +57,3 @@ class PersonParser
   end
 
 end
-people = PersonParser.new
-# people.parse_people_objects_from_array
-# people.file_to_arrays
-# people.create_hash
-people.parse_every_file
