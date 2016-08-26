@@ -12,8 +12,8 @@ class Person
     	@favorite_color = args.fetch(:favorite_color)
   	end
 
-  	def datetime_to_formatted_birthdate(birthdate)
-  		birthdate.strftime("%-m/%-d/%y")
+  	def formatted_birthdate
+  		@date_of_birth.strftime("%-m/%-d/%y")
   	end
 
   	private
