@@ -1,26 +1,27 @@
-# require 'csv'
 require_relative 'person'
-# require 'date'
+require 'date'
 require 'pry'
+require_relative 'sort'
 
 class PersonParser
   attr_reader :people
 
+  include Sort
+
   def initialize
-    @files = []
     @people = []
+    parse_every_file
   end
 
-  # private
-  #this method using CSV methods and setup only works if .txt files are changed to correct headers & commas
- #  def parse_people_objects_from_array
-	# people_array = []
-	# CSV.foreach(@file.gsub(/[,| ]/, ','), 'headers': true, header_converters: :symbol) do |person_row|
-	#     people_array << Person.new(person_row)
 
-	# end
-	# people_array
- #  end
+  def parse_every_file
+  	file_names
+  	@files.each do |file|
+  		create_people_objects(file)
+  	end
+  end
+
+  private
 
 
   def file_names
@@ -40,7 +41,7 @@ class PersonParser
   end
 
   def create_people_objects(file)
-  	person_array = self.standardize_separater(file)
+  	person_array = standardize_separater(file)
   	headers = person_array.shift
   	headers.map! {|header| convert_headers(header)}
   	person_array.each do |person|
@@ -48,12 +49,10 @@ class PersonParser
   	end
   end
 
-  def parse_every_file
-  	self.file_names
-  	@files.each do |file|
-  		self.create_people_objects(file)
-  	end
-  	binding.pry
-  end
 
 end
+people = PersonParser.new
+# people.parse_people_objects_from_array
+# people.file_to_arrays
+# people.create_hash
+people.parse_every_file
