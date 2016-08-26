@@ -13,7 +13,7 @@ class Person
   	end
 
   	def formatted_birthdate
-  		@date_of_birth.strftime("%-m/%-d/%y")
+  		@date_of_birth.strftime("%-m/%-d/%Y")
   	end
 
   	private

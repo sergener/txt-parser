@@ -1,6 +1,4 @@
 require_relative 'person'
-require 'date'
-require 'pry'
 require_relative 'sort'
 
 class PersonParser
@@ -32,7 +30,7 @@ class PersonParser
   	return string.gsub(/(.)([A-Z])/,'\1_\2').downcase.to_sym
   end
 
-  def standardize_separater(file)
+  def split_file_to_arrays(file)
   	person_array = []
   	File.readlines(file).each do |line|
   	  person_array << line.gsub(/[,| ]/, ' ').split(" ")
@@ -41,18 +39,11 @@ class PersonParser
   end
 
   def create_people_objects(file)
-  	person_array = standardize_separater(file)
+  	person_array = split_file_to_arrays(file)
   	headers = person_array.shift
   	headers.map! {|header| convert_headers(header)}
   	person_array.each do |person|
   		@people << Person.new(headers.zip(person).to_h)
   	end
   end
-
-
 end
-people = PersonParser.new
-# people.parse_people_objects_from_array
-# people.file_to_arrays
-# people.create_hash
-people.parse_every_file
