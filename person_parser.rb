@@ -11,6 +11,7 @@ class PersonParser
     parse_every_file
   end
 
+  private
 
   def parse_every_file
   	file_names
@@ -18,9 +19,6 @@ class PersonParser
   		create_people_objects(file)
   	end
   end
-
-  private
-
 
   def file_names
   	@files = Dir.glob("input-files/*")

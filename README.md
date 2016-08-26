@@ -1,9 +1,9 @@
-# Text Parser
-Ruby language application to parse files
+#File Parser
+Ruby language application to parse files.
 
 ##Description
 ###Input files
-Parser can take input files with data deliminated as in the following formats:
+The parser can take input files with data deliminated as in the following formats:
 
 LastName | FirstName | MiddleInitial | Gender | FavoriteColor | DateOfBirth
 

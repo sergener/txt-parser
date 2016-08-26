@@ -32,7 +32,7 @@ describe Sort do
 	  					 "Abercrombie"]}
 
   context "two attributes sorted, ascending" do
-	  it "should sort people objects by gender and then last name" do
+	it "should sort people objects by gender and then last name" do
 	  	gender_last_name = people.sort_multiple_params_asc("gender", "last_name")
 	  	gender_last_name.map! {|person| person.last_name}
 	  	expect(gender_last_name).to eq(gender_last_name_sort)
